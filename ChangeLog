@@ -1,3 +1,7 @@
+2013-02-16  Marc Glisse  <marc.glisse@inria.fr>
+
+	* gmpxx.h: Include <algorithm>.
+
 2013-02-10  Torbjorn Granlund  <tege@gmplib.org>
 
 	* Version 5.1.1 released.
