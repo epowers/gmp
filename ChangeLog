@@ -2,6 +2,11 @@
 
 	* gmpxx.h: Include <algorithm>.
 
+2013-02-16  Torbjorn Granlund  <tege@gmplib.org>
+
+	* mpn/x86_64/x86_64-defs.m4 (PROTECT): Emit '.hidden' instead of
+	'.protected" to please Sun's assembler, but also for semantic reasons.
+
 2013-02-10  Torbjorn Granlund  <tege@gmplib.org>
 
 	* Version 5.1.1 released.
