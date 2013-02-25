@@ -1,3 +1,10 @@
+2013-02-25  Niels Möller  <nisse@lysator.liu.se>
+
+	* mini-gmp/tests/testutils.c (testfree): New function. Use it
+	everywhere where test programs deallocate storage allocated via
+	the mini-gmp allocation functions, including uses of mpz_get_str
+	for various test failure messages.
+
 2013-02-19 Marco Bodrato <bodrato@mail.dm.unipi.it>
 
 	* mini-gmp/mini-gmp.c: Move asserts to work-around a compiler bug.
