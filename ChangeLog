@@ -4,6 +4,23 @@
 
 	* mpz/powm_ui.c (mod): Adhere to mpn_mu_div_qr's overlap requirements.
 
+2013-02-25  Niels Möller  <nisse@lysator.liu.se>
+
+	* mini-gmp/tests/t-double.c (testmain): Declare double variables
+	as volatile, to drop extended precision.
+
+	* mini-gmp/tests/testutils.c (testfree): New function. Use it
+	everywhere where test programs deallocate storage allocated via
+	the mini-gmp allocation functions, including uses of mpz_get_str
+	for various test failure messages.
+
+2013-02-19 Marco Bodrato <bodrato@mail.dm.unipi.it>
+
+	* mini-gmp/mini-gmp.c: Move asserts to work-around a compiler bug.
+
+	* mini-gmp/tests/t-reuse.c: Fix typo causing the same negation condition
+	to be applied to all operands. (See 2013-02-03, Torbjorn)
+
 2013-02-16  Marc Glisse  <marc.glisse@inria.fr>
 
 	* gmpxx.h: Include <algorithm>.
