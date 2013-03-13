@@ -2,8 +2,8 @@
 
    Contributed to the GNU project by Torbjorn Granlund.
 
-Copyright 1991, 1993, 1994, 1996, 1997, 2000, 2001, 2002, 2005, 2008,
-2009, 2011, 2012 Free Software Foundation, Inc.
+Copyright 1991, 1993, 1994, 1996, 1997, 2000, 2001, 2002, 2005, 2008, 2009,
+2011, 2012, 2013 Free Software Foundation, Inc.
 
 This file is part of the GNU MP Library.
 
@@ -70,9 +70,14 @@ mod (mp_ptr np, mp_size_t nn, mp_srcptr dp, mp_size_t dn, gmp_pi1_t *dinv, mp_pt
     }
   else
     {
+      /* We need to allocate separate remainder area, since mpn_mu_div_qr does
+	 not handle overlap between the numerator and remainder areas.
+	 FIXME: Make it handle such overlap.  */
+      mp_ptr rp = TMP_ALLOC_LIMBS (dn);
       mp_size_t itch = mpn_mu_div_qr_itch (nn, dn, 0);
       mp_ptr scratch = TMP_ALLOC_LIMBS (itch);
-      mpn_mu_div_qr (qp, np, np, nn, dp, dn, scratch);
+      mpn_mu_div_qr (qp, rp, np, nn, dp, dn, scratch);
+      MPN_COPY (np, rp, dn);
     }
 
   TMP_FREE;
