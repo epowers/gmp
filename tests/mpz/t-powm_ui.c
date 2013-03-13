@@ -1,6 +1,6 @@
 /* Test mpz_powm_ui, mpz_mul, mpz_mod.
 
-Copyright 1991, 1993, 1994, 1996, 1997, 2000, 2001, 2002 Free Software
+Copyright 1991, 1993, 1994, 1996, 1997, 2000, 2001, 2002, 2013 Free Software
 Foundation, Inc.
 
 This file is part of the GNU MP Library test suite.
@@ -25,7 +25,6 @@ the GNU MP Library test suite.  If not, see http://www.gnu.org/licenses/.  */
 #include "gmp-impl.h"
 #include "tests.h"
 
-void dump_abort (mpz_t, mpz_t);
 void debug_mp (mpz_t, int);
 
 int
@@ -36,7 +35,7 @@ main (int argc, char **argv)
   mp_size_t base_size, exp_size, mod_size;
   unsigned long int exp2;
   int i;
-  int reps = 1000;
+  int reps = 100;
   gmp_randstate_ptr rands;
   mpz_t bs;
   unsigned long bsi, size_range;
@@ -59,7 +58,7 @@ main (int argc, char **argv)
   for (i = 0; i < reps; i++)
     {
       mpz_urandomb (bs, rands, 32);
-      size_range = mpz_get_ui (bs) % 13 + 2;
+      size_range = mpz_get_ui (bs) % 18 + 2;
 
       do  /* Loop until mathematically well-defined.  */
 	{
@@ -143,15 +142,6 @@ main (int argc, char **argv)
 
   tests_end ();
   exit (0);
-}
-
-void
-dump_abort (mpz_t dividend, mpz_t divisor)
-{
-  fprintf (stderr, "ERROR\n");
-  fprintf (stderr, "dividend = "); debug_mp (dividend, -16);
-  fprintf (stderr, "divisor  = "); debug_mp (divisor, -16);
-  abort();
 }
 
 void
